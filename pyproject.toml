@@ -1,0 +1,8 @@
+[project]
+name = "string-expand-test-task"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "pytest>=8.4.0",
+]
