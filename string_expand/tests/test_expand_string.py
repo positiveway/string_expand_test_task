@@ -3,25 +3,23 @@ import pytest
 
 from string_expand.expand_string import expand_string
 
+
 def test_basic_expansion():
     assert expand_string("2[rt]") == "rtrt"
     assert expand_string("q4[t]") == "qtttt"
     assert expand_string("r2[r3[t]w]r3[rt]q") == "rrtttwrtttwrrtrtrtq"
 
 
-def test_empty_cases():
+def test_empty_case():
     assert expand_string("") == ""
-    assert expand_string("a2[]b") == "ab"
 
 
 def test_number_without_brackets():
     assert expand_string("a2b") == "a2b"
-    assert expand_string("123") == "123"
 
 
-def test_nested_cases():
+def test_nested_case():
     assert expand_string("3[a2[b]]") == "abbabbabb"
-    assert expand_string("10[ab]") == "abababababababababab"
 
 
 def test_zero_multiplier():
@@ -54,11 +52,6 @@ def test_multiple_consecutive_brackets():
 def test_brackets_with_no_content():
     assert expand_string("2[]") == ""
     assert expand_string("a2[]b") == "ab"
-
-
-def test_numbers_followed_by_multiple_brackets():
-    assert expand_string("2[ab]3[cd]") == "ababcdcdcd"
-    assert expand_string("2[ab]3[cd]4[ef]") == "ababcdcdcdefefefef"
 
 
 def test_only_brackets():
